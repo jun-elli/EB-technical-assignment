@@ -1,0 +1,20 @@
+$white: #fffeff;
+
+$theme-colors: (
+    "light":      #fdcdcd,
+    "dark":       #000105,
+    "primary":    #9f0f0c,
+    "secondary":  #e13a38,
+    "info":       #f26670,
+    "accent1":    #30438a,
+    "accent2":    #f2521d,
+    "accent3":    #f3918e,
+    "success":    #5fa510,
+    "warning":    #ffc06c,
+    "danger":     #f20766,
+);
+
+$body-bg: #fdcdcd;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
