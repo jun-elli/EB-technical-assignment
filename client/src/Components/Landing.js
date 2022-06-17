@@ -5,7 +5,7 @@ const Landing = () => {
   const [loading, setLoading] = useState(false);
   const { REACT_APP_EB_TOKEN, REACT_APP_ORG_ID } = process.env;
 
-  //retrieve events at render
+  //retrieve events at render and set loging state
   useEffect(() => {
     setLoading(true);
     fetchEvents();
@@ -33,9 +33,34 @@ const Landing = () => {
   };
 
   return (
-    <div>
+    <div className=" justify-content-center">
       <h1>EventBright</h1>
-      <div>List of events</div>
+      <h3>Where amazing happens.</h3>
+      <div className="d-flex justify-content-evenly flex-wrap w-75 mx-auto">
+        {events &&
+          events.map((el) => {
+            return (
+              <div
+                className="card m-3"
+                style={{ width: 18 + "rem" }}
+                key={el.id}
+              >
+                <img
+                  src={el.logo.url}
+                  className="card-img-top"
+                  alt={el.name.text}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{el.name.text}</h5>
+                  <p className="card-text">{el.description.text}</p>
+                  <a href="#" className="btn btn-primary">
+                    Go somewhere
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 };
