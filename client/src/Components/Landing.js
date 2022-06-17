@@ -34,8 +34,13 @@ const Landing = () => {
 
   return (
     <div className=" justify-content-center">
-      <h1>EventBright</h1>
-      <h3>Where amazing happens.</h3>
+      <header className="bg-primary text-white text-center pt-2 pb-2">
+        <h1 className="display-1">EventBright</h1>
+        <figcaption className="blockquote-footer text-white">
+          Where amazing happens.
+        </figcaption>
+      </header>
+
       <div className="d-flex justify-content-evenly flex-wrap w-75 mx-auto">
         {events &&
           events.map((el) => {
