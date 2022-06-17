@@ -22,7 +22,7 @@ const Landing = () => {
         },
       };
       const response = await fetch(
-        `https://www.eventbriteapi.com/v3/organizations/${REACT_APP_ORG_ID}/events/`,
+        `https://www.eventbriteapi.com/v3/organizations/${REACT_APP_ORG_ID}/events/?expand=venue`,
         settings
       );
       const data = await response.json();
@@ -42,29 +42,33 @@ const Landing = () => {
       </header>
 
       <div className="d-flex justify-content-evenly flex-wrap w-75 mx-auto">
+        {loading && <div>Loading...</div>}
         {events &&
-          events.map((el) => {
-            return (
-              <div
-                className="card m-3"
-                style={{ width: 18 + "rem" }}
-                key={el.id}
-              >
-                <img
-                  src={el.logo.url}
-                  className="card-img-top"
-                  alt={el.name.text}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{el.name.text}</h5>
-                  <p className="card-text">{el.description.text}</p>
-                  <a href="#" className="btn btn-primary">
-                    Go somewhere
-                  </a>
+          events
+
+            .filter((el) => el.venue.address.city === "San Francisco")
+            .map((el) => {
+              return (
+                <div
+                  className="card m-3"
+                  style={{ width: 18 + "rem" }}
+                  key={el.id}
+                >
+                  <img
+                    src={el.logo.url}
+                    className="card-img-top"
+                    alt={el.name.text}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{el.name.text}</h5>
+                    <p className="card-text">{el.description.text}</p>
+                    <a href="#" className="btn btn-primary">
+                      Go somewhere
+                    </a>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
       </div>
     </div>
   );
