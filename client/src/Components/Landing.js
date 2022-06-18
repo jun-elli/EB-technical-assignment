@@ -3,17 +3,17 @@ import { useEffect, useState } from "react";
 const Landing = () => {
   const [events, setEvents] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isOnline, setIsOnline] = useState(false);
   const { REACT_APP_EB_TOKEN, REACT_APP_ORG_ID } = process.env;
 
   //retrieve events at render and set loging state
   useEffect(() => {
-    setLoading(true);
     fetchEvents();
-    setLoading(false);
   }, []);
 
   const fetchEvents = async () => {
     try {
+      setLoading(true);
       const settings = {
         method: "GET",
         headers: {
@@ -27,6 +27,7 @@ const Landing = () => {
       );
       const data = await response.json();
       setEvents(data.events);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -40,13 +41,30 @@ const Landing = () => {
           Where amazing happens.
         </figcaption>
       </header>
+      <div>
+        <button
+          className="btn btn-accent2 m-2"
+          onClick={() => setIsOnline(true)}
+        >
+          Online events
+        </button>
+        <button
+          className="btn btn-accent2 m-2"
+          onClick={() => setIsOnline(false)}
+        >
+          Physical events
+        </button>
+      </div>
 
       <div className="d-flex justify-content-evenly flex-wrap w-75 mx-auto">
         {loading && <div>Loading...</div>}
         {events &&
           events
-
-            .filter((el) => el.venue.address.city === "San Francisco")
+            .filter(
+              (el) =>
+                el.venue.address.city === "San Francisco" &&
+                el.online_event === isOnline
+            )
             .map((el) => {
               return (
                 <div
