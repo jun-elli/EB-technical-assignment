@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   const [events, setEvents] = useState(null);
@@ -80,9 +81,9 @@ const Landing = () => {
                   <div className="card-body">
                     <h5 className="card-title">{el.name.text}</h5>
                     <p className="card-text">{el.description.text}</p>
-                    <a href="#" className="btn btn-primary">
-                      Go somewhere
-                    </a>
+                    <Link to={`/events/${el.id}`}>
+                      <button className="btn btn-primary">See event</button>
+                    </Link>
                   </div>
                 </div>
               );
