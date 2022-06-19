@@ -60,9 +60,18 @@ const Event = () => {
                 className="card-img-top"
                 alt={event.name.text}
               />
+              <p className="card-text text-center fs-5 p-3">
+                {event.description.text}
+              </p>
             </div>
             <div className="col-md-3 card-body d-flex flex-column">
-              <h3 className="card-title mb-auto">{event.name.text}</h3>
+              <h3 className="card-title p-3 text-center">{event.name.text}</h3>
+              <p className="card-text fw-light">
+                Starts: {formatDate(event.start.local)}
+              </p>
+              <p className="card-text fw-light mb-auto">
+                Ends: {formatDate(event.end.local)}
+              </p>
               <p>
                 Price:{" "}
                 {event.is_free
@@ -72,21 +81,6 @@ const Event = () => {
                     event.ticket_availability.maximum_ticket_price.display}{" "}
               </p>
               <button className="btn btn-success">Tickets</button>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-8">
-              <p className="card-text text-center fs-5 mt-3">
-                {event.description.text}
-              </p>
-            </div>
-            <div className="col-md-3">
-              <div className="card-body">
-                <p className="card-text">
-                  Starts: {formatDate(event.start.local)}
-                </p>
-                <p className="card-text">Ends: {formatDate(event.end.local)}</p>
-              </div>
             </div>
           </div>
         </div>
