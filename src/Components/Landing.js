@@ -5,7 +5,7 @@ const Landing = () => {
   const [events, setEvents] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isOnline, setIsOnline] = useState(false);
-  const { REACT_APP_EB_TOKEN, REACT_APP_ORG_ID } = process.env;
+  const { REACT_APP_EB_TOKEN } = process.env;
 
   //retrieve events at render and set loging state
   useEffect(() => {
@@ -22,8 +22,9 @@ const Landing = () => {
           Authorization: `Bearer ${REACT_APP_EB_TOKEN}`,
         },
       };
+      // 1006659129493 is my organization id
       const response = await fetch(
-        `https://www.eventbriteapi.com/v3/organizations/${REACT_APP_ORG_ID}/events/?expand=venue`,
+        `https://www.eventbriteapi.com/v3/organizations/1006659129493/events/?expand=venue`,
         settings
       );
       const data = await response.json();

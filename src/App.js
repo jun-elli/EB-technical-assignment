@@ -1,9 +1,7 @@
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./Components/Landing";
 import Event from "./Components/Event";
 import Tickets from "./Components/Tickets";
-import { useState } from "react";
 
 function App() {
   return (
