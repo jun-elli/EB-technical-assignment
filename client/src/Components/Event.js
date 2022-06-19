@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 //import tokens and my user id from env
 
-const Event = () => {
+const Event = ({ getEventToParent }) => {
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(false);
   const { REACT_APP_EB_TOKEN } = process.env;
@@ -28,8 +28,8 @@ const Event = () => {
         settings
       );
       const data = await response.json();
-      console.log(data);
       setEvent(data);
+      getEventToParent(data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -51,6 +51,7 @@ const Event = () => {
           Where amazing happens.
         </figcaption>
       </header>
+      {loading && <div>Loading...</div>}
       {event && (
         <div className="card m-3 w-75 mx-auto">
           <div className="row">
@@ -80,7 +81,12 @@ const Event = () => {
                     " - " +
                     event.ticket_availability.maximum_ticket_price.display}{" "}
               </p>
-              <button className="btn btn-success">Tickets</button>
+              <Link
+                to={`/event/${id}/tickets`}
+                className="d-flex flex-column text-decoration-none"
+              >
+                <button className="btn btn-success">Tickets</button>
+              </Link>
             </div>
           </div>
         </div>
