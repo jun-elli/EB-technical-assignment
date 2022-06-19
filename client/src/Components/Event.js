@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 //import tokens and my user id from env
 
-const Event = ({ getEventToParent }) => {
+const Event = () => {
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(false);
   const { REACT_APP_EB_TOKEN } = process.env;
@@ -29,7 +29,6 @@ const Event = ({ getEventToParent }) => {
       );
       const data = await response.json();
       setEvent(data);
-      getEventToParent(data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -61,9 +60,7 @@ const Event = ({ getEventToParent }) => {
                 className="card-img-top"
                 alt={event.name.text}
               />
-              <p className="card-text text-center fs-5 p-3">
-                {event.description.text}
-              </p>
+              <p className="card-text text-center fs-5 p-3">{event.summary}</p>
             </div>
             <div className="col-md-3 card-body d-flex flex-column">
               <h3 className="card-title p-3 text-center">{event.name.text}</h3>

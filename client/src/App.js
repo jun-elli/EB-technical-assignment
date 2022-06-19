@@ -6,17 +6,12 @@ import Tickets from "./Components/Tickets";
 import { useState } from "react";
 
 function App() {
-  const [event, setEvent] = useState(null);
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route
-          path="/event/:id"
-          element={<Event getEventToParent={setEvent} />}
-        />
-        <Route path="/event/:id/tickets" element={<Tickets event={event} />} />
+        <Route path="/event/:id" element={<Event />} />
+        <Route path="/event/:id/tickets" element={<Tickets />} />
       </Routes>
     </BrowserRouter>
   );
