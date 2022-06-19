@@ -81,7 +81,7 @@ const Landing = () => {
                   <div className="card-body">
                     <h5 className="card-title">{el.name.text}</h5>
                     <p className="card-text">{el.description.text}</p>
-                    <Link to={`/events/${el.id}`}>
+                    <Link to={`/event/${el.id}`}>
                       <button className="btn btn-primary">See event</button>
                     </Link>
                   </div>
